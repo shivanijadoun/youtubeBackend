@@ -11,7 +11,18 @@ dotenv.config({
 })
 
 
-connectDB();
+connectDB()
+.then(()=>{
+
+    //write app handle error in this assignment from app.on
+    app.listen(process.env.PORT || 8000 ,()=>{
+      console.log(`Server is running at port : ${process.env.PORT}`);
+    })
+})
+.catch(()=>{
+    console.log(`MONGO db connection failed !!!`,error);
+
+})
 
 
 
@@ -50,8 +61,13 @@ const app = express()
 
 
 
-
 // function connectDB(){}
 
-
 // connectDB();
+
+
+//when data is coming from url then we use req.params
+
+//we can take data from cookies as well from data.cookies
+
+//we use middlewares with the help  use
